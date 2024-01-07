@@ -1,0 +1,18 @@
+<div class="wrapper">
+    <div class="header">
+        <button class="" #menuBtn (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <app-header></app-header>
+    </div>
+
+
+    <mat-sidenav-container [hasBackdrop]="true">
+        <mat-sidenav #drawer mode="over" closed>
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
