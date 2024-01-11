@@ -13,12 +13,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent implements OnInit {
-   
+  // 
   constructor(private authService: AuthService){}
-
+// 
   ngOnInit(): void {}
 
   submit(email: string, password: string) {
-    // this.authService.signUp(email, password).subscribe((d) => console.log(d));
+    this.authService.signUp(email, password).subscribe((d) => console.log(d));
   }
 }
