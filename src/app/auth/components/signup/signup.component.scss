@@ -1,0 +1,43 @@
+:host {
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+
+  .form_section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .text > *{
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: gray;
+    
+    .link{
+      font-size: 22px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  
+
+  .button1 {
+    margin-top: 20px;
+  }
+}

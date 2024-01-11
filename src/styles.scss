@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 $color_black: #1b191900;
-$color_purple:#a302ed;
+$color_purple: #a302ed;
 $color_pink: #fb045a;
-
 
 * {
   color: white;
@@ -20,5 +19,80 @@ li {
   list-style: none;
 }
 
+.input1 {
+  color: grey;
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  width: 300px;
 
+  &:focus {
+    background-color: #141212;
+    border: 1px solid grey;
+  }
+}
 
+.button1 {
+  padding: 20px 60px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 5px;
+  background: linear-gradient(
+    193deg,
+    rgba(173, 25, 209, 1) 0%,
+    rgba(204, 21, 53, 1) 72%
+  );
+
+  cursor: pointer;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    border-radius: 4px;
+    background-color: #141212;
+    z-index: -1;
+  }
+
+  &::after {
+    content: attr(data);
+    font-size: 20px;
+    background: linear-gradient(
+      193deg,
+      rgba(173, 25, 209, 1) 0%,
+      rgba(204, 21, 53, 1) 72%
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  &:hover{
+    font-weight: 600;
+  }
+}
+
+.button2{
+  border: none;
+  background-color: #141212;
+  color: gray;
+  margin: 5px;
+  padding: 5px;
+
+  &:hover{
+    color: white;
+  }
+}
+
+h1{
+  text-align: center;
+  font-weight: 400;
+  color: gray;
+  margin: 10px;
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "frontend-blog-angular": {
+      "hosting": {
+        "frontendblog": [
+          "frontend-blog-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "frontend-blog-angular"
+  }
+}
