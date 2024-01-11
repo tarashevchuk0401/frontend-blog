@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,9 +12,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent implements OnInit {
-   
-  constructor(private authService: AuthService){}
-
+  // 
+  // authService = inject(AuthService);
+  // constructor(private authService: AuthService){}
+// 
   ngOnInit(): void {}
 
   submit(email: string, password: string) {

@@ -1,2 +1,22 @@
-<p>signup works!</p>
-<button (click)="submit()">submit</button>
+<div class="wrapper">
+    <h1>Sign Up</h1>
+    <form 
+    #signUp="ngForm" 
+    (ngSubmit)="submit(signUp.value.email, signUp.value.password)">
+        <div class="form_section">
+            <input class="input1" type="email" placeholder="Email" id="email" name="email" ngModel>
+        </div>
+        <div class="form_section">
+            <input class="input1" type="password" placeholder="Password" id="password" name="password" ngModel>
+        </div>
+        <div class="text">
+            <div>Already have an account?</div>
+            <div> Go to
+                <span>
+                    <a routerLink="/login" class="button2 link">Log In</a>
+                </span>
+            </div>
+        </div>
+        <button class="button1" type="submit" data="Submit"></button>
+    </form>
+</div>
