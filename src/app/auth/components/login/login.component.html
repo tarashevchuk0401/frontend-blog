@@ -16,11 +16,8 @@
             </div>
         </div>
         @if(backendErrors$ | async){
-            <app-backend-error-messages 
-            [backendErrors]="backendErrors$| async"
-             ></app-backend-error-messages>
+        <app-backend-error-messages [backendErrors]="backendErrors$| async"></app-backend-error-messages>
         }
         <button class="button1" type="submit" data="Log In"></button>
     </form>
 </div>
-
