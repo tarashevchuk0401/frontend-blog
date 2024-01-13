@@ -2,7 +2,7 @@ import {createActionGroup, emptyProps, props} from '@ngrx/store';
 import {authRequestInterface} from '../types/authRequest.interface';
 import {AuthResponseInterface} from '../types/authResponse.interface';
 import {BackendError} from '../../shared/types/backendError.interface';
-import { CurrentUser } from '../../shared/types/currentUser.interface';
+import { CurrentUserData } from '../../shared/types/currentUser.interface';
 
 export const authActions = createActionGroup({
   source: 'auth',
@@ -16,8 +16,10 @@ export const authActions = createActionGroup({
     'LogIn failed': props<{error: BackendError}>(),
 
     'Get current user': emptyProps(),
-    'Get current user success': props<{currentUser: CurrentUser}>(),
+    'Get current user success': props<{currentUserData: CurrentUserData}>(),
     'Get current user failed': emptyProps(),
+
+    
   },
 });
 

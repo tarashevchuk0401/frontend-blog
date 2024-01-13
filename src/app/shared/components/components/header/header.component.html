@@ -5,4 +5,18 @@
     <a class="button2" routerLink="/signup">
         SignUp
     </a>
+
+    @if(!currentUser$){
+    <a class="button2" routerLink="/login">
+        LogIn
+    </a>
+    <a class="button2" routerLink="/signup">
+        SignUp
+    </a>
+    }
+    @if (currentUser$) {
+    <a class="button2" routerLink="/signup">
+        LogOut
+    </a>
+    }
 </div>

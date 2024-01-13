@@ -6,6 +6,7 @@ import {authRequestInterface} from '../types/authRequest.interface';
 import {AuthResponseInterface} from '../types/authResponse.interface';
 import {response} from 'express';
 import {environment} from '../../../environment/environment';
+import {CurrentUserData} from '../../shared/types/currentUser.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +45,11 @@ export class AuthService {
       );
   }
 
-  // fetchUserData(){
-  // return  this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + environment.apiKey, {idToken: localStorage.getItem('token')})
-  // }
+  getCurrentUser(): Observable<CurrentUserData> {
+    return this.http.post<CurrentUserData>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' +
+        environment.apiKey,
+      {idToken: localStorage.getItem('token')}
+    );
+  }
 }

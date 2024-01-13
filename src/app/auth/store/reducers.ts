@@ -7,6 +7,7 @@ const initialState: AuthStateInterface = {
   isLoading: false,
   currentUser: undefined,
   validationErrors: null,
+  currentUserData: undefined
 };
 
 const authFeature = createFeature({
@@ -25,6 +26,7 @@ const authFeature = createFeature({
     on(authActions.signUpFailed, (state, action) => ({
       ...state,
       validationErrors: action.error,
+      currentUser: null
     })),
 
     // LogIn
@@ -38,7 +40,22 @@ const authFeature = createFeature({
     on(authActions.logInFailed, (state, action) => ({
       ...state,
       validationErrors: action.error,
+      currentUser : null
     })),
+
+    //Get Current User
+    on(authActions.getCurrentUser, state => ({
+      ...state
+    })),
+    on(authActions.getCurrentUserSuccess, (state, action) => ({
+      ...state,
+      currentUserData: action.currentUserData
+    })),
+    on(authActions.getCurrentUserFailed, state => ({
+      ...state,
+      currentUserData: null
+    })),
+
     on(routerNavigationAction, (state) => ({
       ...state,
       validationError: null,
@@ -49,6 +66,6 @@ const authFeature = createFeature({
 export const {
   name: authFeatureKey,
   reducer: authReducer,
-  selectCurrentUser,
+  selectCurrentUserData,
   selectValidationErrors,
 } = authFeature;
