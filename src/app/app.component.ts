@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { SidebarComponent } from './shared/components/components/sidebar/sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { HeaderComponent } from './shared/components/components/header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 // import { TestComponent } from './auth/components/test/test.component';
 

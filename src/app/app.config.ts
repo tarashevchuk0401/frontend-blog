@@ -1,19 +1,32 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {ApplicationConfig, importProvidersFrom} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
-import { provideStore } from '@ngrx/store';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getDatabase, provideDatabase } from '@angular/fire/database';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {routes} from './app.routes';
+import {provideClientHydration} from '@angular/platform-browser';
+import {provideState, provideStore} from '@ngrx/store';
+import {provideAnimations} from '@angular/platform-browser/animations';
+import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
+import {getAuth, provideAuth} from '@angular/fire/auth';
+import {getDatabase, provideDatabase} from '@angular/fire/database';
+import {provideHttpClient, withFetch} from '@angular/common/http';
+import {provideStoreDevtools} from '@ngrx/store-devtools';
+import {authFeatureKey, authReducer} from './auth/store/reducers';
+import {provideEffects} from '@ngrx/effects';
+import * as authEffects from './auth/store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    
+    provideStore(),
+    provideState(authFeatureKey, authReducer),
+    provideEffects(authEffects),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: true,
+      autoPause: true,
+      trace: false,
+      traceLimit: 75,
+    }),
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideAnimations(),

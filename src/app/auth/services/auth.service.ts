@@ -14,12 +14,8 @@ import {environment} from '../../../environment/environment';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  signUp(email: string, password: string): Observable<AuthResponseInterface> {
-    const request: authRequestInterface = {
-      email: email,
-      password: password,
-      returnSecureToken: true,
-    };
+  signUp(request: authRequestInterface): Observable<AuthResponseInterface> {
+   
 
     return this.http
       .post<AuthResponseInterface>(
