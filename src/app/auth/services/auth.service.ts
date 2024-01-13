@@ -52,4 +52,8 @@ export class AuthService {
       {idToken: localStorage.getItem('token')}
     );
   }
+
+  logOut(){
+    localStorage.removeItem('token')
+  }
 }

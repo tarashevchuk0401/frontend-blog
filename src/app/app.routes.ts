@@ -8,6 +8,11 @@ export const routes: Routes = [
       import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
   },
   {
+    path: 'article',
+    loadChildren: () =>
+      import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
+  },
+  {
     path: 'login',
     loadChildren: () => import('./auth/auth.routes').then((m) => m.loginRoutes),
   },

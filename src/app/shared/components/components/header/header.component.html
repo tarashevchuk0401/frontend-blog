@@ -1,12 +1,6 @@
 <div class="wrapper">
-    <a class="button2" routerLink="/login">
-        LogIn
-    </a>
-    <a class="button2" routerLink="/signup">
-        SignUp
-    </a>
 
-    @if(!currentUser$){
+    @if(currentUser$ === null || currentUser$ === undefined){
     <a class="button2" routerLink="/login">
         LogIn
     </a>
@@ -14,8 +8,11 @@
         SignUp
     </a>
     }
-    @if (currentUser$) {
-    <a class="button2" routerLink="/signup">
+    @else  {
+    <a class="button2" routerLink="/article/add-new" (click)="logOut()">
+        Add new article
+    </a>
+    <a class="button2" routerLink="/signup" (click)="logOut()">
         LogOut
     </a>
     }

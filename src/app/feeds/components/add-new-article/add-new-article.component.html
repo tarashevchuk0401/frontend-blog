@@ -1,0 +1,9 @@
+<form #newArticle="ngForm" (ngSubmit)="addNewArticle(newArticle)">
+    <div class="form_section">
+        <input class="input1" type="text" placeholder="Title" id="title" name="title" ngModel>
+    </div>
+    <div class="form_section">
+        <textarea class="input1" name="body" id="body" cols="30" rows="10" ngModel></textarea>
+    </div>
+    <button class="button1" type="submit" data="Add new article"></button>
+</form>
