@@ -1,7 +1,12 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 
 export const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
+  },
   {
     path: 'login',
     loadChildren: () => import('./auth/auth.routes').then((m) => m.loginRoutes),

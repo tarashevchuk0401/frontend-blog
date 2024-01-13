@@ -13,11 +13,15 @@ import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {authFeatureKey, authReducer} from './auth/store/reducers';
 import {provideEffects} from '@ngrx/effects';
 import * as authEffects from './auth/store/effects';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideStore(),
+    provideStore({
+      router: routerReducer
+    }),
     provideState(authFeatureKey, authReducer),
     provideEffects(authEffects),
     provideStoreDevtools({
@@ -27,6 +31,7 @@ export const appConfig: ApplicationConfig = {
       trace: false,
       traceLimit: 75,
     }),
+    provideRouterStore({}),
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideAnimations(),

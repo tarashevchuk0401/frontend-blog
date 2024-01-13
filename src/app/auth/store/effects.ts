@@ -2,9 +2,10 @@ import {inject} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {AuthService} from '../services/auth.service';
 import {authActions} from './actions';
-import {catchError, map, of, switchMap} from 'rxjs';
+import {catchError, map, of, switchMap, tap} from 'rxjs';
 import {CurrentUser} from '../../shared/types/currentUser.interface';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 export const signUpEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService)) => {
@@ -30,6 +31,19 @@ export const signUpEffect = createEffect(
   {functional: true}
 );
 
+export const redirectAfterSignUpEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+      return actions$.pipe(
+          ofType(authActions.signUpSuccess),
+          tap(() => {
+              router.navigateByUrl('/');
+          })
+      );
+  },
+  {functional: true, dispatch: false}
+);
+
+
 export const logInEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService)) => {
     return actions$.pipe(
@@ -53,3 +67,16 @@ export const logInEffect = createEffect(
   },
   {functional: true}
 );
+
+export const redirectAfterLoginEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+      return actions$.pipe(
+          ofType(authActions.logInSuccess),
+          tap(() => {
+              router.navigateByUrl('/');
+          })
+      );
+  },
+  {functional: true, dispatch: false}
+);
+
