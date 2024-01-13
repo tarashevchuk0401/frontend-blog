@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   submit(email: string, password: string) {
-    this.authService.signUp(email, password).subscribe((d) => console.log(d));
+    this.authService.logIn(email, password).subscribe((d) => console.log(d));
   }
 
   
