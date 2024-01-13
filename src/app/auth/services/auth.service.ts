@@ -15,8 +15,6 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(request: authRequestInterface): Observable<AuthResponseInterface> {
-   
-
     return this.http
       .post<AuthResponseInterface>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
@@ -31,13 +29,7 @@ export class AuthService {
       );
   }
 
-  logIn(email: string, password: string) {
-    const request: authRequestInterface = {
-      email: email,
-      password: password,
-      returnSecureToken: true,
-    };
-
+  logIn(request: authRequestInterface): Observable<AuthResponseInterface> {
     return this.http
       .post<AuthResponseInterface>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +

@@ -21,7 +21,31 @@ export const signUpEffect = createEffect(
               authActions.signUpFailed({
                 error: errorResponse.error.error.message,
               })
-            )
+            );
+          })
+        );
+      })
+    );
+  },
+  {functional: true}
+);
+
+export const logInEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService)) => {
+    return actions$.pipe(
+      ofType(authActions.logIn),
+      switchMap(({request}) => {
+        return authService.logIn(request).pipe(
+          map((response) => {
+            return authActions.logInSuccess({response});
+          }),
+
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(
+              authActions.logInFailed({
+                error: errorResponse.error.error.message,
+              })
+            );
           })
         );
       })
