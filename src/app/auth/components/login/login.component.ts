@@ -33,6 +33,11 @@ export class LoginComponent {
       returnSecureToken: true,
     };
     
-    this.store.dispatch(authActions.logIn({request}) )
+    this.store.dispatch(authActions.logIn({request}))
+
+    ///// REFACTOR THAT
+    setTimeout(() => {
+      this.store.dispatch(authActions.getCurrentUser())
+    },500)
   }
 }

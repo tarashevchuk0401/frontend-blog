@@ -28,16 +28,18 @@ export class HeaderComponent implements OnInit {
 
     this.store.select(selectCurrentUser).subscribe((d) => {
       this.currentUser$ = d;
-      console.log(this.currentUser$);
     });
 
     this.store.select(selectCurrentUserData).subscribe((d) => {
       this.currentUserData$ = d;
-      console.log(this.currentUserData$);
     });
   }
 
   logOut() {
     this.store.dispatch(authActions.logOut());
   }
+
+  // data(){
+  //   console.log(this.currentUserData$)
+  // }
 }

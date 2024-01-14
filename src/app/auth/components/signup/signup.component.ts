@@ -8,9 +8,9 @@ import {delay, map, tap} from 'rxjs';
 import {authRequestInterface} from '../../types/authRequest.interface';
 import {Store} from '@ngrx/store';
 import {AuthStateInterface} from '../../types/authState.interface';
-import { authActions } from '../../store/actions';
-import { selectValidationErrors } from '../../store/reducers';
-import { BackendErrorMessages } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
+import {authActions} from '../../store/actions';
+import {selectValidationErrors} from '../../store/reducers';
+import {BackendErrorMessages} from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({
   selector: 'app-signup',
@@ -25,8 +25,8 @@ export class SignupComponent implements OnInit {
     private store: Store<{auth: AuthStateInterface}>
   ) {}
 
-  backendErrors$ = this.store.select(selectValidationErrors)
-  
+  backendErrors$ = this.store.select(selectValidationErrors);
+
   ngOnInit(): void {}
 
   submit(email: string, password: string) {
@@ -36,9 +36,10 @@ export class SignupComponent implements OnInit {
       returnSecureToken: true,
     };
 
-    this.store.dispatch(authActions.signUp({request}))
-
-    // this.authService.signUp(request).subscribe((d) => console.log(d));
-    // this.authService.fetchUserData().pipe(delay(1000)).subscribe(d => console.log(d))
+    this.store.dispatch(authActions.signUp({request}));
+    ///// REFACTOR THAT
+    setTimeout(() => {
+      this.store.dispatch(authActions.getCurrentUser());
+    }, 500);
   }
 }

@@ -52,7 +52,6 @@ export const logInEffect = createEffect(
           map((response) => {
             return authActions.logInSuccess({response});
           }),
-
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               authActions.logInFailed({

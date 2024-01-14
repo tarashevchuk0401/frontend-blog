@@ -1,12 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ArticleService} from '../../services/article.service';
+import {Article} from '../../../shared/types/article.interface';
+import {CommonModule} from '@angular/common';
+import {Store} from '@ngrx/store';
+import {articleActions} from '../../state/actions';
+import {ArticlesStateInterface, selectArticles} from '../../state/reducers';
 
 @Component({
   selector: 'app-global-feeds',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './global-feeds.component.html',
-  styleUrl: './global-feeds.component.scss'
+  styleUrl: './global-feeds.component.scss',
 })
-export class GlobalFeedsComponent {
+export class GlobalFeedsComponent implements OnInit {
+  allArticle: Array<Article> | null | undefined;
+
+  constructor(
+    private articleService: ArticleService,
+    private store: Store<{article: ArticlesStateInterface}>
+  ) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(articleActions.getArticle());
+    
+    this.store.select(selectArticles).subscribe((articles) => {
+      this.allArticle = articles;
+    });
+  }
 
 }
