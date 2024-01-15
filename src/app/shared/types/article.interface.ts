@@ -3,6 +3,7 @@ export interface Article {
     body: string,
     imageUrl: string,
     author: string,
+    authorEmail: string,
     createdAt: Date,
     likesQuantity: number,
     isLikedByUser: boolean | undefined,

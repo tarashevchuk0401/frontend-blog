@@ -1,3 +1,18 @@
-@for (item of allArticle; track $index) {
-<div>{{item.title}}</div>
-<div>TEST</div> }
+<div class="wrapper">
+    @for (item of allArticle; track $index) {
+        <div class="card">
+            <div class="card_main">
+                <div class="card_main_meta">
+                    <span class="meta_author">{{item.authorEmail}} tarashevchuk</span>
+                    <span class="meta_date">{{item.createdAt | date}}</span>
+                </div>
+                <div class="card_main_title">{{item.title}}</div>
+                <div class="card_main_body">{{item.body}}</div>
+                <div class="card_main_tags">{{item.tags}}</div>
+            </div>
+            <div class="card_img">
+                <img  src={{item.imageUrl}} alt="article_image">
+            </div>
+        </div>
+     }
+</div>

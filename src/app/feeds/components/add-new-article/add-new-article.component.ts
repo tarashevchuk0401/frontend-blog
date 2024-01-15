@@ -53,6 +53,7 @@ export class AddNewArticleComponent implements OnInit {
       title: form.value.title,
       body: form.value.body,
       author: this.currentUserData.users[0].localId,
+      authorEmail: this.currentUserData.users[0].email,
       createdAt: new Date(),
       likesQuantity: 0,
       isLikedByUser: false,

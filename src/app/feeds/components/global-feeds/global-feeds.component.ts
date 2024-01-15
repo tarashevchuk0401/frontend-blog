@@ -15,6 +15,7 @@ import {ArticlesStateInterface, selectArticles} from '../../state/reducers';
 })
 export class GlobalFeedsComponent implements OnInit {
   allArticle: Array<Article> | null | undefined;
+  test: string = 'https://firebasestorage.googleapis.com/v0/b/frontend-blog-angular.appspot.com/o/s?alt=media&token=5cdf3de5-2769-4dc6-a38a-bf00fc510e20'
 
   constructor(
     private articleService: ArticleService,
@@ -26,6 +27,7 @@ export class GlobalFeedsComponent implements OnInit {
     
     this.store.select(selectArticles).subscribe((articles) => {
       this.allArticle = articles;
+      console.log(this.allArticle)
     });
   }
 
