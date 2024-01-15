@@ -5,12 +5,11 @@ import {ArticleService} from '../../services/article.service';
 import {Article} from '../../../shared/types/article.interface';
 import {nanoid} from 'nanoid';
 import {Store} from '@ngrx/store';
-import {selectCurrentUser} from '../../../auth/store/reducers';
-import {AuthResponseInterface} from '../../../auth/types/authResponse.interface';
-// import { AngularFireStorage } from '@angular/fire/compat/storage'
-// import { Firestore } from '@angular/fire/firestore';
+import {selectCurrentUserData} from '../../../auth/store/reducers';
 import {Storage} from '@angular/fire/storage';
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage';
+import {authActions} from '../../../auth/store/actions';
+import {CurrentUserData} from '../../../shared/types/currentUser.interface';
 
 @Component({
   selector: 'app-add-new-article',
@@ -20,58 +19,68 @@ import {getDownloadURL, ref, uploadBytes} from 'firebase/storage';
   styleUrl: './add-new-article.component.scss',
 })
 export class AddNewArticleComponent implements OnInit {
-  currentUser: AuthResponseInterface | undefined | null;
+  currentUserData: CurrentUserData | undefined | null;
   imageFile: any;
+  imageName: string = 'Your new image';
 
-  // fireStorage = inject(AngularFireStorage);
-  // firestore: Firestore = inject(Firestore);
-  storage: any = inject(Storage);
+  storage = inject(Storage);
 
   constructor(private articleService: ArticleService, private store: Store) {}
 
   ngOnInit(): void {
-    this.store
-      .select(selectCurrentUser)
-      .subscribe((d) => (this.currentUser = d));
+    this.store.dispatch(authActions.getCurrentUser());
+
+    this.store.select(selectCurrentUserData).subscribe((d) => {
+      this.currentUserData = d;
+    });
   }
 
-  addNewArticle(form: NgForm) {
-    if (!this.currentUser) {
+  async createNewArticle(form: NgForm) {
+    if (!this.currentUserData) {
       return;
     }
+
+    let handledTags: string[] = [''];
+
+    if (form.value.tags) {
+      handledTags = form.value.tags
+        .replaceAll(',', ' ')
+        .split(' ')
+        .filter((i: string) => i !== '');
+    }
+
     const newArticle: Article = {
       title: form.value.title,
       body: form.value.body,
-      author: this.currentUser.localId,
+      author: this.currentUserData.users[0].localId,
       createdAt: new Date(),
       likesQuantity: 0,
       isLikedByUser: false,
       id: nanoid(),
-      tags: ['firstTag'],
+      tags: handledTags,
       updatedAt: undefined,
+      imageUrl: '',
     };
+
+    if (this.imageFile) {
+      const uploadTask = await uploadBytes(
+        ref(this.storage, 'images'),
+        this.imageFile
+      );
+      const url = await getDownloadURL(uploadTask.ref);
+      newArticle.imageUrl = url;
+    }
+
     this.articleService
       .addNewArticle(newArticle)
-      .subscribe((d: Article) => console.log(d));
+      .subscribe((d: Article) => {
+        form.reset()
+        this.imageFile = null
+      });
   }
 
   uploadImage(event: any): void {
     this.imageFile = event.target.files[0];
-  }
-
-  async addNewProduct(newProductForm: NgForm): Promise<void> {
-    let newId: string = Math.floor(Math.random() * 1000000000 + 1).toString();
-    let newImageUrl: string = '';
-
-    if (this.imageFile) {
-      let path = `${this.imageFile.name}`;
-      const uploadTask = await uploadBytes(
-        ref(this.storage, 's'),
-        this.imageFile
-      );
-      const url = await getDownloadURL(uploadTask.ref);
-      newImageUrl = url;
-      console.log(newImageUrl);
-    }
+    this.imageName = this.imageFile.name;
   }
 }

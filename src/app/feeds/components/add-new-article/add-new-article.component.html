@@ -1,16 +1,21 @@
-<form #newArticle="ngForm" (ngSubmit)="addNewArticle(newArticle)">
+<form #newArticle="ngForm" (ngSubmit)="createNewArticle(newArticle)">
     <div class="form_section">
         <input class="input1" type="text" placeholder="Title" id="title" name="title" ngModel>
     </div>
     <div class="form_section">
         <textarea class="input1" name="body" id="body" cols="30" rows="10" ngModel></textarea>
     </div>
+    <div class="form_section">
+        <input class="input1" type="text" placeholder="Tags" id="tags" name="tags" ngModel>
+    </div>
+    <button class="button1" type="button" data="Select photo" (click)="inputFile.click()"></button>
+    <div class="image_name">
+        @if (imageFile) {
+        <div>{{imageName}}</div>
+        }
+    </div>
     <button class="button1" type="submit" data="Add new article"></button>
     <div>
-
-        <input type="file" (change)="uploadImage($event)">    
-<!-- 
-        <input type="file" (change)="uploadImage($event)">     -->
+        <input type="file" #inputFile class="inputFile" (change)="uploadImage($event)">
     </div>
-    <button (click)="addNewProduct(newArticle)" class="button1">Add</button>    
 </form>
