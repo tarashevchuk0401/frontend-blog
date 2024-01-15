@@ -1,5 +1,8 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
+import {AngularFireModule} from '@angular/fire/compat';
+import { environment } from '../environment/environment';
+
 
 export const routes: Routes = [
   {
@@ -24,7 +27,10 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    AngularFireModule.initializeApp(environment),
+    AngularFireModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

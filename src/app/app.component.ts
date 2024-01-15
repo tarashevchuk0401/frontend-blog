@@ -20,7 +20,7 @@ import { authActions } from './auth/store/actions';
     SidebarComponent,
     MatIconModule,
     HeaderComponent,
-    // TestComponent
+    
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
