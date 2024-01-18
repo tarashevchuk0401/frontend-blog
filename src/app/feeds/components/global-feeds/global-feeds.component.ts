@@ -6,17 +6,18 @@ import {Store} from '@ngrx/store';
 import {articleActions} from '../../state/actions';
 import {ArticlesStateInterface, selectArticles} from '../../state/reducers';
 import { TruncatePipe } from '../../../shared/pipes/truncate.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-global-feeds',
   standalone: true,
-  imports: [CommonModule, TruncatePipe],
+  imports: [CommonModule, TruncatePipe, RouterLink],
   templateUrl: './global-feeds.component.html',
   styleUrl: './global-feeds.component.scss',
 })
 export class GlobalFeedsComponent implements OnInit {
   allArticle: Array<Article> | null | undefined;
-  test: string = 'https://firebasestorage.googleapis.com/v0/b/frontend-blog-angular.appspot.com/o/s?alt=media&token=5cdf3de5-2769-4dc6-a38a-bf00fc510e20'
+  // test: string = 'https://firebasestorage.googleapis.com/v0/b/frontend-blog-angular.appspot.com/o/s?alt=media&token=5cdf3de5-2769-4dc6-a38a-bf00fc510e20'
 
   constructor(
     private articleService: ArticleService,
@@ -31,5 +32,9 @@ export class GlobalFeedsComponent implements OnInit {
       console.log(this.allArticle)
     });
   }
+
+  // test(){
+  //   this.articleService.getSingleArticle('9CYd0xGImDOdli06g8W2D').subscribe(d => console.log(d))
+  // }
 
 }

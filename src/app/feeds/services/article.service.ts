@@ -25,4 +25,12 @@ export class ArticleService {
       )
       .pipe(map((item) => Object.values(item), toArray()));
   }
+
+  getSingleArticle(articleId: string): Observable<Article> {
+    return this.http.get<Article>(
+      'https://frontend-blog-angular-default-rtdb.europe-west1.firebasedatabase.app/articles/' +
+        articleId +
+        '/.json'
+    );
+  }
 }
