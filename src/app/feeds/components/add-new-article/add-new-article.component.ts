@@ -40,7 +40,7 @@ export class AddNewArticleComponent implements OnInit {
       return;
     }
 
-    let handledTags: string[] = [''];
+    let handledTags: string[] | null = null;
 
     if (form.value.tags) {
       handledTags = form.value.tags

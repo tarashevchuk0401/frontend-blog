@@ -5,11 +5,12 @@ import {CommonModule} from '@angular/common';
 import {Store} from '@ngrx/store';
 import {articleActions} from '../../state/actions';
 import {ArticlesStateInterface, selectArticles} from '../../state/reducers';
+import { TruncatePipe } from '../../../shared/pipes/truncate.pipe';
 
 @Component({
   selector: 'app-global-feeds',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TruncatePipe],
   templateUrl: './global-feeds.component.html',
   styleUrl: './global-feeds.component.scss',
 })

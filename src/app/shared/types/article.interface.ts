@@ -8,6 +8,6 @@ export interface Article {
     likesQuantity: number,
     isLikedByUser: boolean | undefined,
     id: string,
-    tags : Array<string>,
+    tags : Array<string> | null,
     updatedAt: Date | undefined
 }

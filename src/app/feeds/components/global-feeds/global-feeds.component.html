@@ -1,18 +1,31 @@
 <div class="wrapper">
-    @for (item of allArticle; track $index) {
-        <div class="card">
-            <div class="card_main">
-                <div class="card_main_meta">
-                    <span class="meta_author">{{item.authorEmail}} tarashevchuk</span>
-                    <span class="meta_date">{{item.createdAt | date}}</span>
+    @if (allArticle) {
+        @for (item of allArticle; track $index) {
+            <div class="card">
+                <div class="card_main">
+                    <div class="card_main_meta">
+                        <span class="meta_author">{{item.authorEmail}} tarashevchuk</span>
+                        <span class="meta_date">{{item.createdAt | date}}</span>
+                    </div>
+                    <div class="card_main_title">{{item.title}}</div>
+                    <div class="card_main_body">{{item.body | truncate}}</div>
+                    @if(item.tags){
+                    <div class="card_main_tags">
+                        @for (item of item.tags; track $index) {
+        
+                            <span>{{item}}</span>
+                        }
+                    </div>
+                    }
                 </div>
-                <div class="card_main_title">{{item.title}}</div>
-                <div class="card_main_body">{{item.body}}</div>
-                <div class="card_main_tags">{{item.tags}}</div>
+                <div class="card_img">
+                    <img src={{item.imageUrl}} alt="article_image">
+                </div>
             </div>
-            <div class="card_img">
-                <img  src={{item.imageUrl}} alt="article_image">
-            </div>
-        </div>
-     }
+            }
+    }
+    @else {
+        <h1>Some error ... </h1>
+    }
+    
 </div>
