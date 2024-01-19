@@ -51,7 +51,7 @@ export class AddNewArticleComponent implements OnInit {
 
     const newArticle: Article = {
       title: form.value.title,
-      body: form.value.body,
+      body: form.value.body.split('\n'),
       author: this.currentUserData.users[0].localId,
       authorEmail: this.currentUserData.users[0].email,
       createdAt: new Date(),
@@ -60,7 +60,8 @@ export class AddNewArticleComponent implements OnInit {
       id: nanoid(),
       tags: handledTags,
       updatedAt: undefined,
-      imageUrl: '',
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/frontend-blog-angular.appspot.com/o/pexels-josh-sorenson-1714208.jpg?alt=media&token=e91b3b9f-a179-457c-a71c-fbd95e8225be',
     };
 
     if (this.imageFile) {
@@ -72,12 +73,11 @@ export class AddNewArticleComponent implements OnInit {
       newArticle.imageUrl = url;
     }
 
-    this.articleService
-      .addNewArticle(newArticle)
-      .subscribe((d: Article) => {
-        form.reset()
-        this.imageFile = null
-      });
+    this.articleService.addNewArticle(newArticle).subscribe((d: Article) => {
+      console.log(d);
+      form.reset();
+      this.imageFile = null;
+    });
   }
 
   uploadImage(event: any): void {

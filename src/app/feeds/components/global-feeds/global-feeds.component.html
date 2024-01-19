@@ -8,7 +8,7 @@
                         <span class="meta_date">{{item.createdAt | date}}</span>
                     </div>
                     <div class="card_main_title">{{item.title}}</div>
-                    <div class="card_main_body">{{item.body | truncate}}</div>
+                    <div class="card_main_body">{{item.body[0] | truncate}}</div>
                     <a class="card_main_more" routerLink="article/{{item.id}}">Read more ...</a>
 
                     @if(item.tags){

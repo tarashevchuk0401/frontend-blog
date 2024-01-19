@@ -9,7 +9,12 @@
             <span class="article_header_date">{{currentArticle.createdAt | date}}</span>
         </div>
         <div class="article_title">{{currentArticle.title}}</div>
-        <div class="article_body">{{currentArticle.body}}</div>
+        <div class="article_body">
+            
+            @for (item of currentArticle.body; track $index) {
+                <p>{{item}}</p>
+            } 
+        </div>
     </div>
     }
 </div>

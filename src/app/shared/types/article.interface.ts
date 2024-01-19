@@ -1,6 +1,6 @@
 export interface Article {
     title: string,
-    body: string,
+    body: string[],
     imageUrl: string,
     author: string,
     authorEmail: string,
