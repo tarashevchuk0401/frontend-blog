@@ -19,7 +19,6 @@ import { authRequestInterface } from '../../types/authRequest.interface';
 })
 export class LoginComponent {
   constructor(
-    private authService: AuthService,
     private store: Store<{auth: AuthStateInterface}>
   ) {}
 

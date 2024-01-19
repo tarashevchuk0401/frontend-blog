@@ -1,1 +1,15 @@
-<p>{{currentArticle?.title}}</p>
+<div class="wrapper">
+    @if (currentArticle) {
+    <div class="image_container">
+    </div>
+    <img src="{{currentArticle.imageUrl}}" alt="">
+    <div class="article">
+        <div class="article_header">
+            <span class="article_header_author">{{currentArticle.authorEmail}}</span>
+            <span class="article_header_date">{{currentArticle.createdAt | date}}</span>
+        </div>
+        <div class="article_title">{{currentArticle.title}}</div>
+        <div class="article_body">{{currentArticle.body}}</div>
+    </div>
+    }
+</div>

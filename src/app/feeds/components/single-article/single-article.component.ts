@@ -4,11 +4,12 @@ import {articleActions} from '../../state/actions';
 import {selectArticles, selectSingleArticle} from '../../state/reducers';
 import {ActivatedRoute} from '@angular/router';
 import { Article } from '../../../shared/types/article.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-single-article',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './single-article.component.html',
   styleUrl: './single-article.component.scss',
 })

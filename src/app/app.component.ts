@@ -8,6 +8,7 @@ import { HeaderComponent } from './shared/components/components/header/header.co
 import { BrowserModule } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { authActions } from './auth/store/actions';
+import { LoginComponent } from './auth/components/login/login.component';
 // import { TestComponent } from './auth/components/test/test.component';
 
 @Component({

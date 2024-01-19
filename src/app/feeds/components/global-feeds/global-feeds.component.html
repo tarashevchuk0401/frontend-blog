@@ -1,9 +1,4 @@
 <div class="wrapper">
-
-    
-    <!-- <h1>TEst
-        <button (click)="test()">TEST</button>
-    </h1> -->
     @if (allArticle) {
         @for (item of allArticle; track $index) {
             <div class="card">
@@ -14,7 +9,7 @@
                     </div>
                     <div class="card_main_title">{{item.title}}</div>
                     <div class="card_main_body">{{item.body | truncate}}</div>
-                    <a class="card_main_more" routerLink="/{{item.id}}">Read more ...</a>
+                    <a class="card_main_more" routerLink="article/{{item.id}}">Read more ...</a>
 
                     @if(item.tags){
                     <div class="card_main_tags">

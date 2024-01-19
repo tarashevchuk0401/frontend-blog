@@ -65,7 +65,7 @@ export class AddNewArticleComponent implements OnInit {
 
     if (this.imageFile) {
       const uploadTask = await uploadBytes(
-        ref(this.storage, 'images'),
+        ref(this.storage, this.imageFile.name),
         this.imageFile
       );
       const url = await getDownloadURL(uploadTask.ref);

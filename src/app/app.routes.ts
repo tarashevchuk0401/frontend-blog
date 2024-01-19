@@ -6,14 +6,9 @@ import { environment } from '../environment/environment';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
-  },
-  {
     path: 'article',
     loadChildren: () =>
-      import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
+    import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
   },
   {
     path: 'login',
@@ -22,7 +17,12 @@ export const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () =>
-      import('./auth/auth.routes').then((m) => m.signupRoutes),
+    import('./auth/auth.routes').then((m) => m.signupRoutes),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./feeds/feed.routing').then((m) => m.FeedsRoutes),
   },
 ];
 
