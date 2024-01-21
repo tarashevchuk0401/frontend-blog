@@ -1,20 +1,32 @@
-<div class="wrapper">
-    @if (currentArticle) {
-    <div class="image_container">
-    </div>
-    <img src="{{currentArticle.imageUrl}}" alt="">
-    <div class="article">
-        <div class="article_header">
-            <span class="article_header_author">{{currentArticle.authorEmail}}</span>
-            <span class="article_header_date">{{currentArticle.createdAt | date}}</span>
+@defer ( on timer(400ms)) {
+    <div class="wrapper">
+        <!-- @if (isLoading) {
+         <h1 class="loading">Loading ...</h1>   
+        } -->
+        @if (currentArticle) {
+        <div class="image_container">
         </div>
-        <div class="article_title">{{currentArticle.title}}</div>
-        <div class="article_body">
-            
-            @for (item of currentArticle.body; track $index) {
-                <p>{{item}}</p>
-            } 
+        <img src="{{currentArticle.imageUrl}}" alt="">
+        <div class="article">
+            <div class="article_header">
+                <span class="article_header_author">{{currentArticle.authorEmail}}</span>
+                <span class="article_header_date">{{currentArticle.createdAt | date}}</span>
+            </div>
+            <div class="article_title">{{currentArticle.title}}</div>
+            <div class="article_body">
+                
+                @for (item of currentArticle.body; track $index) {
+                    <p>{{item}}</p>
+                } 
+            </div>
         </div>
+        }
     </div>
-    }
-</div>
+}
+<!-- @loading  {
+    <h1>LOADING!!!!!!!!!!!!!!</h1>
+    <div class="">loading</div>
+} -->
+@placeholder {
+    <h1 class="loading">Loading ...</h1>   
+}

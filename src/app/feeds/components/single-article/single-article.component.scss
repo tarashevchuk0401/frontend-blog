@@ -3,6 +3,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  .loading{
+    margin-top: 100px;
+  }
  
   img {
     width: 100%;
