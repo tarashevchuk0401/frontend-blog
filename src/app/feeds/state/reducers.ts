@@ -36,7 +36,7 @@ const articleFeature = createFeature({
 
     on(articleActions.getSingleArticle, (state) => ({
       ...state,
-
+      singleArticle: null,
     })),
     on(articleActions.getSingleArticleSuccess, (state, actions) => ({
       ...state, 

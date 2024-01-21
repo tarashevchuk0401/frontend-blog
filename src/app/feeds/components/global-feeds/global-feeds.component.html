@@ -1,33 +1,35 @@
+@defer () {
 <div class="wrapper">
     @if (allArticle) {
-        @for (item of allArticle; track $index) {
-            <div class="card">
-                <div class="card_main">
-                    <div class="card_main_meta">
-                        <span class="meta_author">{{item.authorEmail}} tarashevchuk</span>
-                        <span class="meta_date">{{item.createdAt | date}}</span>
-                    </div>
-                    <div class="card_main_title">{{item.title}}</div>
-                    <div class="card_main_body">{{item.body[0] | truncate}}</div>
-                    <a class="card_main_more" routerLink="article/{{item.id}}">Read more ...</a>
+    @for (item of allArticle; track $index) {
+    <div class="card">
+        <div class="card_main">
+            <div class="card_main_meta">
+                <span class="meta_author">{{item.authorEmail}} tarashevchuk</span>
+                <span class="meta_date">{{item.createdAt | date}}</span>
+            </div>
+            <div class="card_main_title">{{item.title}}</div>
+            <div class="card_main_body">{{item.body[0] | truncate}}</div>
+            <a class="card_main_more" routerLink="article/{{item.id}}">Read more ...</a>
 
-                    @if(item.tags){
-                    <div class="card_main_tags">
-                        @for (item of item.tags; track $index) {
-        
-                            <span>{{item}}</span>
-                        }
-                    </div>
-                    }
-                </div>
-                <div class="card_img">
-                    <img src={{item.imageUrl}} alt="article_image">
-                </div>
+            @if(item.tags){
+            <div class="card_main_tags">
+                @for (item of item.tags; track $index) {
+
+                <span>{{item}}</span>
+                }
             </div>
             }
+        </div>
+        <div class="card_img">
+            <img src={{item.imageUrl}} alt="article_image">
+        </div>
+    </div>
     }
-    @else {
-        <h1>Some error ... </h1>
     }
-    
 </div>
+}
+
+@loading (minimum 500ms) {
+<div class="loading">LOADING... </div>
+}

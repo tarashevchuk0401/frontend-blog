@@ -1,8 +1,5 @@
-@defer ( on timer(400ms)) {
+@defer () {
     <div class="wrapper">
-        <!-- @if (isLoading) {
-         <h1 class="loading">Loading ...</h1>   
-        } -->
         @if (currentArticle) {
         <div class="image_container">
         </div>
@@ -23,10 +20,6 @@
         }
     </div>
 }
-<!-- @loading  {
-    <h1>LOADING!!!!!!!!!!!!!!</h1>
-    <div class="">loading</div>
-} -->
-@placeholder {
+@loading (minimum 500ms) {
     <h1 class="loading">Loading ...</h1>   
 }
